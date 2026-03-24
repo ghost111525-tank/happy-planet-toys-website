@@ -1,0 +1,60 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SiteConfig {
+  id        Int    @id @default(1)
+  siteName  String @default("欢乐星球")
+  logoUrl   String @default("/logo.png")
+  navToys   String @default("玩具中心")
+  navAbout  String @default("关于我们")
+  navHonors String @default("荣誉奖项")
+  navTeam   String @default("团队风采")
+  navParts  String @default("合作伙伴")
+  
+  homeTitle String @default("开启充满欢乐的奇妙之旅 🌟")
+  homeSub   String @default("为所有年龄段的孩子设计，既安全又好玩的玩具天地。让每一个梦想在欢乐星球起飞！探索我们的童趣宇宙。")
+  
+  aboutTitle String @default("品牌故事 📖")
+  aboutText1 String @default("欢乐星球成立于2010年，最初只是一群热爱孩童、怀揣梦想的设计师相聚在车库里的小作坊。如今，我们已经成长为深受全球家庭喜爱并屡获殊荣的儿童玩具优质制造商。")
+  aboutText2 String @default("我们的初衷很简单：制作既安全环保，又让孩子充满惊喜的玩具。我们坚信，每一个出色的玩具不仅是孩子游乐的亲密伙伴，更是激发无限潜力和创造力的神奇魔法钥匙。从云端记忆棉的一针一线缝制，到食品级无毒水漆的手工上色，我们用心打磨每一个可能被孩子拥抱入怀的微小细节。")
+}
+
+model Toy {
+  id       String @id @default(cuid())
+  name     String
+  desc     String
+  fullDesc String
+  price    String
+  img      String
+  category String
+  features String // 存 JSON 串
+  addedAt  DateTime @default(now())
+}
+
+model Honor {
+  id    Int    @id @default(autoincrement())
+  year  String
+  title String
+  org   String
+}
+
+model TeamMember {
+  id     Int    @id @default(autoincrement())
+  name   String
+  avatar String
+  role   String
+  slogan String
+}
+
+model Partner {
+  id   Int    @id @default(autoincrement())
+  name String
+  icon String
+}

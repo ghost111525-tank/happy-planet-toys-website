@@ -1,31 +1,35 @@
-import PageHeader from '../../components/PageHeader';
-import { toysData } from '../../data/mock';
 import Link from 'next/link';
+import PageHeader from '../../components/PageHeader';
+import { PrismaClient } from '@prisma/client';
 import styles from './page.module.css';
 
-export default function ToysPage() {
+const globalForPrisma = global as unknown as { prisma: PrismaClient };
+const prisma = globalForPrisma.prisma || new PrismaClient();
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+export default async function ToysPage() {
+  const toysData = await prisma.toy.findMany();
+
   return (
     <div>
       <PageHeader 
         title="奇妙玩具中心" 
-        subtitle="在这里，每一个玩具都拥有自己的魔法故事。快来寻找属于你的完美好伙伴吧！" 
-        emoji="🎁" 
+        subtitle="在这里发现无限可能！这可是由最新的全栈数据库实时渲染呈现的哦 ✨" 
+        emoji="🧸" 
       />
+      
       <div className={styles.container}>
         <div className={styles.grid}>
-          {toysData.map(toy => (
+          {toysData.map((toy) => (
             <Link href={`/toys/${toy.id}`} key={toy.id} className={styles.card}>
-              <div className={styles.imgWrapper}>
-                <img src={toy.img} alt={toy.name} className={styles.toyImg} />
-                <div className={styles.badge}>{toy.category === 'plush' ? '毛绒安抚' : toy.category === 'block' ? '益智积木' : '电子发光'}</div>
+              <div className={styles.imageBox}>
+                <img src={toy.img} alt={toy.name} className="animate-float" />
               </div>
-              <div className={styles.cardInfo}>
-                <h3>{toy.name}</h3>
-                <p>{toy.desc}</p>
-                <div className={styles.cardBottom}>
-                  <span className={styles.price}>{toy.price}</span>
-                  <span className={styles.viewMore}>查看详情 &rarr;</span>
-                </div>
+              <div className={styles.info}>
+                <span className={styles.category}>{toy.category === 'plush' ? '毛绒安抚' : toy.category === 'educational' ? '益智启蒙' : '互动发声'}</span>
+                <h2>{toy.name}</h2>
+                <p className={styles.price}>{toy.price}</p>
+                <p className={styles.desc}>{toy.desc}</p>
               </div>
             </Link>
           ))}

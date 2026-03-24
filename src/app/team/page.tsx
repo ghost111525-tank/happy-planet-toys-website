@@ -1,15 +1,13 @@
 import PageHeader from '../../components/PageHeader';
-import { teamMembers } from '../../data/mock';
 import styles from './team.module.css';
+import { prisma } from '../../lib/prisma';
 
-export default function TeamPage() {
+export default async function TeamPage() {
+  const teamMembers = await prisma.teamMember.findMany();
+
   return (
     <div>
-      <PageHeader 
-        title="遇见造梦师团队" 
-        subtitle="童话的背后，是一群始终保持童心的大孩子！" 
-        emoji="👨‍👩‍👧‍👦" 
-      />
+      <PageHeader title="遇见造梦师团队" subtitle="童话的背后，是一群始终保持童心的大孩子！" emoji="👨‍👩‍👧‍👦" />
       <div className={styles.container}>
         <div className={styles.grid}>
           {teamMembers.map(member => (

@@ -1,19 +1,17 @@
 import PageHeader from '../../components/PageHeader';
-import { partnersData } from '../../data/mock';
 import styles from './partners.module.css';
+import { prisma } from '../../lib/prisma';
 
-export default function PartnersPage() {
+export default async function PartnersPage() {
+  const partnersData = await prisma.partner.findMany();
+
   return (
     <div>
-      <PageHeader 
-        title="强强联手的朋友们" 
-        subtitle="和全世界最顶尖的伙伴一起，为您护航每一个安心、高品质的玩乐瞬间。" 
-        emoji="🤝" 
-      />
+      <PageHeader title="强强联手的生态链" subtitle="和千万世界级的保障伙伴联营。" emoji="🤝" />
       <div className={styles.container}>
         <div className={styles.grid}>
-          {partnersData.map((partner, idx) => (
-            <div key={idx} className={styles.partnerCard}>
+          {partnersData.map(partner => (
+            <div key={partner.id} className={styles.partnerCard}>
               <div className={`${styles.icon} animate-wobble`}>{partner.icon}</div>
               <h3>{partner.name}</h3>
             </div>
