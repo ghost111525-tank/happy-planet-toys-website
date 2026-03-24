@@ -1,0 +1,137 @@
+.detailContainer {
+  max-width: 1200px;
+  margin: 140px auto 100px;
+  padding: 0 20px;
+  min-height: 60vh;
+}
+.backLink {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #888;
+  margin-bottom: 40px;
+  transition: color 0.3s;
+}
+.backLink:hover {
+  color: var(--primary);
+}
+.productLayout {
+  display: flex;
+  gap: 60px;
+  background: var(--card-bg);
+  border-radius: 50px;
+  padding: 50px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.04);
+}
+.imgSection {
+  flex: 1;
+}
+.imgWrapper {
+  background: var(--background);
+  border-radius: 40px;
+  padding: 40px;
+  height: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mainImg {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 40px rgba(0,0,0,0.15));
+}
+.infoSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.badge {
+  align-self: flex-start;
+  background: var(--accent-blue);
+  color: #333;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 800;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 15px rgba(181, 234, 215, 0.5);
+}
+.title {
+  font-size: 3.2rem;
+  color: var(--heading);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+.price {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 35px;
+}
+.descBox {
+  margin-bottom: 45px;
+}
+.descBox h3, .features h3 {
+  font-size: 1.4rem;
+  color: var(--text);
+  margin-bottom: 20px;
+  font-weight: 900;
+}
+.descBox p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #666;
+}
+.features ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+.features li {
+  font-size: 1.15rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+.checkIcon {
+  color: #fff;
+  font-weight: 800;
+  background: var(--accent);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(226, 240, 203, 0.8);
+}
+.buyBtn {
+  margin-top: auto;
+  font-size: 1.4rem !important;
+  padding: 18px 45px !important;
+  border-radius: 50px !important;
+  align-self: flex-start;
+}
+.notFound {
+  text-align: center;
+  padding: 200px 20px;
+}
+.notFound h1 {
+  font-size: 3.5rem;
+  margin-bottom: 30px;
+  color: var(--heading);
+}
+
+@media (max-width: 900px) {
+  .productLayout {
+    flex-direction: column;
+    padding: 30px;
+  }
+}

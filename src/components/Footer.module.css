@@ -1,0 +1,70 @@
+.footer {
+  position: relative;
+  background-color: var(--secondary);
+  padding-top: 140px;
+  margin-top: 120px;
+}
+.wave {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0 C300,120 900,-120 1200,0 L1200,120 L0,120 Z" fill="%23FFDAC1"/></svg>') no-repeat center;
+  background-size: cover;
+}
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 50px;
+  color: #666;
+}
+.brand h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: var(--heading);
+}
+.brand p {
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+.links h4 {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  color: var(--text);
+  font-weight: 800;
+}
+.links ul {
+  list-style: none;
+}
+.links li {
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  font-size: 1.05rem;
+}
+.links li:hover {
+  color: var(--heading);
+  transform: translateX(5px);
+}
+.bottom {
+  text-align: center;
+  padding: 25px;
+  background-color: rgba(255,255,255,0.3);
+  color: #666;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .links li:hover {
+    transform: none;
+  }
+}
