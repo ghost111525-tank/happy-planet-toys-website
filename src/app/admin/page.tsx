@@ -1,10 +1,8 @@
-import { PrismaClient } from '@prisma/client';
-import { revalidatePath } from 'next/cache';
 import styles from './admin.module.css';
+import { prisma } from '../../lib/prisma';
+import { updateConfig, handleToy, handleHonor, handleTeam, handlePartner } from './actions';
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
-const prisma = globalForPrisma.prisma || new PrismaClient();
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+export const dynamic = 'force-dynamic';
 
 export default async function AdminDashboard() {
   const settings = await prisma.siteConfig.findFirst() || await prisma.siteConfig.create({ data: {} });
